@@ -1,0 +1,103 @@
+<!-- Danyelle Barrett -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			.menu {
+				overflow:hidden;
+				background-color: #DA70D6;
+				font-family: Arial;
+			}
+
+			.menu a{
+				float: left;
+				font-size: 16px;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+
+			}
+
+			.dropdown {
+    			float: left;
+   				overflow: hidden;
+			}
+
+			.dropdown .dropbtn {
+			    font-size: 16px;    
+			    border: none;
+			    outline: none;
+			    color: white;
+			    padding: 14px 16px;
+			    background-color: inherit;
+			}
+
+			.menu a:hover, .dropdown:hover .dropbtn {
+			    background-color: red;
+			}
+
+			.dropdown-content {
+			    display: none;
+			    position: absolute;
+			    background-color: #f9f9f9;
+			    min-width: 160px;
+			    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			    z-index: 1;
+			}
+
+			.dropdown-content a {
+			    float: none;
+			    color: black;
+			    padding: 12px 16px;
+			    text-decoration: none;
+			    display: block;
+			    text-align: left;
+			}
+
+			.dropdown-content a:hover {
+			    background-color: #ddd;
+			}
+
+			.dropdown:hover .dropdown-content {
+			    display: block;
+			}
+
+			.page {
+				font-size: 18px;
+				font-family: Arial;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="menu">
+			<a href="#home">Home</a>
+
+  			<div class="dropdown">
+    			<button class="dropbtn">Dropdown1</button>
+   				 <div class="dropdown-content">
+      				<a href="#">Link 1</a>
+      				<a href="#">Link 2</a>
+      				<a href="#">Link 3</a>
+    			</div>
+  			</div> 
+
+  			<div class="dropdown">
+    			<button class="dropbtn">Dropdown2</button>
+   				 <div class="dropdown-content">
+      				<a href="#">Link 4</a>
+      				<a href="#">Link 5</a>
+      				<a href="#">Link 6</a>
+    			</div>
+  			</div> 
+
+  			<a href="#quit">Quit</a>
+
+		</div>
+		<div class="page">
+			<h3> Dropdown Menu Example </h3>
+			<p>
+  				This page demonstrates a dropdown menu system using html/css.
+  			</p>
+  		</div>
+	</body>
+</html>
