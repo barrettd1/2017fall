@@ -6,15 +6,12 @@
             
         <title>Home Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
 
-        <header>
-            <div class = "container">
-                 <h2>What Do You Meme?</h2>
-            </div>
-        </header>
-
+        <div id="header-placeholder"></div>
+        
         <div class = "container">
             <div class ="jumbotron">
                 <h3>Welcome to the Meme challenge</h3>
@@ -61,6 +58,8 @@
         <script>
             hello = "world"
             $(function(){
+                $("#header-placeholder").load("_header.html");
+
                 $("btn-primary").click(function(){
                     $(this).closest(".col-md-4").css({'max-width': 'none'})
                         .animate({'flex-basis': '100%'})
