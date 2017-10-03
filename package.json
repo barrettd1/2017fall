@@ -2,14 +2,15 @@
   "name": "2017fall",
   "version": "1.0.0",
   "description": "what do you meme",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass jquery-mockup/src --output jquery-mockup/dist --watch"
-  },
+  "main": "index.js", 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/barrettd1/2017fall.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass jquery-mockup/src --output jquery-mockup/dist --watch",
+    "webpack": "webpack"
   },
   "dependencies": {
     "express": "^4.15.4",
@@ -18,6 +19,9 @@
   "devDependencies": {
     "eslint": "^4.7.0",
     "webpack": "^3.6.0",
-    "node-sass": "^4.5.3"
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.18.2"
   }
 }
