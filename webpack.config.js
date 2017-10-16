@@ -34,5 +34,6 @@ module.exports = {
             Popper: ['popper.js', 'default'],
           }),
         extractSass
-    ]
+    ],
+    devtool: 'source-map'
 };
