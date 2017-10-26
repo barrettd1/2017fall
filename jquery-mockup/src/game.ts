@@ -19,7 +19,7 @@ export class Player{
 export class Room{
     players: Player[] = [new Player(), new Player()];
     dealer: Player;
-    picture: string = "https://media4.s-nbcnews.com/j/newscms/2017_07/1903576/170215-chicken-farm-mn-1630_c65475166849611a3c0207983317eab4.nbcnews-ux-320-320.jpg";
+    picture: string;
     quotes: Quote[] = [];
 
     drawPicture(){
@@ -36,6 +36,21 @@ export class Room{
         $("#players").html(
             this.players.map(x => `<li class="list-group-item">${x.name}</li>`).join("")
         )
+    }
+
+    update(){
+        $.get("/game/room/picture").done( data => {
+            this.picture = data;
+            this.drawPicture();
+        });
+        $.get("/game/room/quotes").done( data => {
+            this.quotes = data;
+            this.drawQuotes();
+        });
+    }
+
+    init(){
+        setInterval(() => this.update(), 1000)
     }
 }
 
@@ -61,12 +76,9 @@ export class Game{
 const game = new Game();
 const room = new Room();
 const me = new Player();
-var i = 0;
 
+room.init();
 game.init().done(() => {
-    room.picture = game.pictures[i];
-    room.drawPicture();
-    room.drawQuotes();
     room.drawPlayers();
     
     me.quotes = game.quotes;
@@ -75,7 +87,5 @@ game.init().done(() => {
 
 $("#cmd-flip").click(function(e){
     e.preventDefault();
-    i++;
-    room.picture = game.pictures[i];
-    room.drawPicture();
+    $.post("/game/room/picture")
 })
