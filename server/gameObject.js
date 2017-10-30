@@ -1,3 +1,5 @@
+const quotes = require("./quotes");
+
 let iCurrentPicture=0;
 let iCurrentQuote=0;
 const game = {
@@ -6,11 +8,8 @@ const game = {
         "https://media4.s-nbcnews.com/j/newscms/2017_03/1870136/gettyimages-458409394_71637639157329f7cb319a3e895e2860.nbcnews-ux-320-320.jpg"
     ],
     getNextPicture: ()=> game.pictures[iCurrentPicture++],
-    quotes: [
-        { text: "Get me out of here"},
-        { text: "They're just fine"},
-        { text: "Anywhere but Hasborouck"},
-    ],
+    quotes: quotes,
+    getNextQuote: ()=> game.quotes[iCurrentQuote++],
     room: {
         picture: "",
         quotes:[]
