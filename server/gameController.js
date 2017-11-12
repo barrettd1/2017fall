@@ -11,9 +11,11 @@ router
     .get("/room/quotes", (req, res) => res.send(game.room.quotes))
     .post("/room/picture", (req, res) => {
         game.room.picture = game.getNextPicture();
+        res.status(201).send(game.room.picture);
     })
     .post("/room/quotes", (req, res) => {
         game.room.quotes.push(req.body);
+        res.status(201).send(game.getNextQuote());
     })
 
 

@@ -1,49 +1,48 @@
 <div class = "container">
-    
-                <div class="row">
-                    <div class="col-md-3">
-                            <div class="card" >
-                                 <div class="card-header">
-                                     Players
-                                </div>
-                                <ul class="list-group list-group-flush" id="players">
-                                    <li class="list-group-item">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
-                                </ul>
-                            </div>
-    
-                            <div class="card" >
-                                <div class="card-header">
-                                    My Quotes
-                               </div>
-                               <ul class="list-group list-group-flush" id="my-quotes">
-                                   <li class="list-group-item">Cras justo odio</li>
-                                   <li class="list-group-item">Dapibus ac facilisis in</li>
-                                   <li class="list-group-item">Vestibulum at eros</li>
-                               </ul>
-                            </div>
+      <div class="row">
+            <div class="col-md-3">
+                <div class="card" >
+                     <div class="card-header">
+                           Players
                     </div>
-                    <div class="col-md-9">
-                            <div class="card" >         
-                                    <div class="card-body">
-                                        <img class="card-img-top" [src]="room.picture" alt="Card image cap" id="picture">   
-                                        <a href="#" class="btn btn-primary" id="cmd-flip">Flip a new card</a>
-                                        
-                                        <div class="card" >
-                                             <div class="card-header">
-                                                  Played Quotes
-                                             </div>
-                                            <ul class="list-group list-group-flush" id="played-quotes">
-                                                <li class="list-group-item">Cras justo odio</li>
-                                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                <li class="list-group-item">Vestibulum at eros</li>
-                                            </ul>
-                                        </div>
+                     <ul class="list-group list-group-flush" id="players">
+                        <li *ngFor="let x of room.players" class="list-group-item">{{x.name}}</li>
+                     </ul>
+                </div>
     
-                                    </div>
-                                </div>
+                <div class="card" >
+                    <div class="card-header">
+                         My Quotes
+                    </div>
+                     <ul class="list-group list-group-flush" id="my-quotes">
+                        <li *ngFor="let x of me.quotes; index as i" 
+                            class="list-group-item"
+                            (click)="submitQuote($event, x, i)">
+                            {{x.text}}
+                        </li>
+                     </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card" >         
+                    <div class="card-body">
+                        <img class="card-img-top" [src]="room.picture" alt="Card image cap" id="picture">   
+                         <a href="#" class="btn btn-primary" id="cmd-flip" (click)="flipPicture($event)">Flip a new card</a>
+                                        
+                        <div class="card" >
+                             <div class="card-header">
+                                Played Quotes
+                            </div>
+                             <ul class="list-group list-group-flush" id="played-quotes">
+                                <li *ngFor="let x of room.quotes" class="list-group-item">
+                                    {{x.text}}
+                                </li>
+                             </ul>
+                        </div>
+    
                     </div>
                 </div>
             </div>
+    </div>
+</div>
     
