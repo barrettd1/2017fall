@@ -14,4 +14,6 @@ export class Room{
     dealer: Player;
     picture: string;
     quotes: Quote[] = [];
+
+    chosenQuote?: number = null;
 }
