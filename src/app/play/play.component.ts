@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
 import { Room, Player, Quote } from '../models/game';
+import { GameService } from '../models/game.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-play',
@@ -10,39 +12,38 @@ import { Room, Player, Quote } from '../models/game';
 
 export class PlayComponent implements OnInit {
 
-    apiRoot = "//localhost:3000"
-
     room = new Room();
-    me = new Player();
+    me: Player;
 
-     constructor(private http: Http) { }
+     constructor(private http: Http, public game: GameService, private router: Router) { }
 
     ngOnInit() {
+        if(this.game.me == null){
+            this.router.navigate(['/login']);
+        }
+        this.me = this.game.me;
         setInterval(() => this.update(), 1000)
-        this.http.get(this.apiRoot+ "/game/quotes").subscribe( data => {
-          this.me.quotes = data.json();
-        })
     }
 
     update(){
-        this.http.get(this.apiRoot + "/game/room/picture").subscribe( data => {
+        this.http.get(this.game.apiRoot + "/game/room/picture").subscribe( data => {
           this.room.picture = data.text();
         });
-        this.http.get(this.apiRoot +  "/game/room/quotes").subscribe( data => {
+        this.http.get(this.game.apiRoot +  "/game/room/quotes").subscribe( data => {
             this.room.quotes = data.json();
         });
     }
 
     flipPicture(e: MouseEvent){
         e.preventDefault();
-        this.http.post(this.apiRoot + "/game/room/picture", {}).subscribe();
+        this.http.post(this.game.apiRoot + "/game/room/picture", {}).subscribe();
         this.room.chosenQuote = null;
     }
 
     submitQuote(e: MouseEvent, quote: Quote, i: number){
         e.preventDefault();
         const data = { text: quote.text };
-        this.http.post(this.apiRoot + "/game/room/quotes", data).subscribe(res => {
+        this.http.post(this.game.apiRoot + "/game/room/quotes", data).subscribe(res => {
             this.me.quotes.splice(i, 1);
             this.me.quotes.push(res.json());
         });  
