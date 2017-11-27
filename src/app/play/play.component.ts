@@ -15,7 +15,7 @@ export class PlayComponent implements OnInit {
     room = new Room();
     me: Player;
 
-     constructor(private http: Http, public game: GameService, private router: Router) { }
+    constructor(private http: Http, public game: GameService, private router: Router) { }
 
     ngOnInit() {
         if(this.game.me == null){
@@ -26,11 +26,8 @@ export class PlayComponent implements OnInit {
     }
 
     update(){
-        this.http.get(this.game.apiRoot + "/game/room/picture").subscribe( data => {
-          this.room.picture = data.text();
-        });
-        this.http.get(this.game.apiRoot +  "/game/room/quotes").subscribe( data => {
-            this.room.quotes = data.json();
+        this.http.get(this.game.apiRoot +  "/game/room").subscribe( data => {
+            this.room = data.json();
         });
     }
 
