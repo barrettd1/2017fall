@@ -10,11 +10,18 @@ router
     .get("/room", (req, res) => res.send(game.room))
     .post("/room/picture", (req, res) => {
         game.room.picture = game.getNextPicture();
+        game.room.quotes = [];
         res.status(201).send(game.room.picture);
     })
     .post("/room/quotes", (req, res) => {
         game.room.quotes.push(req.body);
         res.status(201).send(game.getNextQuote());
+    })
+    .post("/room/quotes/choose",(req, res) => {
+        const chosen = game.room.quotes[req.body.i];
+        chosen.chosen = true;
+        game.room.dealer = (game.room.dealer + 1) % game.room.players.length;
+        res.status(201).send(chosen);
     })
     .post("/room/players", (req, res) => {
         //if user enters correct password, create and add them

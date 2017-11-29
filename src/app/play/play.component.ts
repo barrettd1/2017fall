@@ -34,12 +34,12 @@ export class PlayComponent implements OnInit {
     flipPicture(e: MouseEvent){
         e.preventDefault();
         this.http.post(this.game.apiRoot + "/game/room/picture", {}).subscribe();
-        this.room.chosenQuote = null;
     }
 
     submitQuote(e: MouseEvent, quote: Quote, i: number){
         e.preventDefault();
-        const data = { text: quote.text };
+        //says what player the qoute belongs to
+        const data = { text: quote.text, player: this.me.name };
         this.http.post(this.game.apiRoot + "/game/room/quotes", data).subscribe(res => {
             this.me.quotes.splice(i, 1);
             this.me.quotes.push(res.json());
@@ -48,7 +48,11 @@ export class PlayComponent implements OnInit {
 
     chooseQuote(e: MouseEvent, i: number){
         e.preventDefault();
-        this.room.chosenQuote = i;
+        this.http.post(this.game.apiRoot + "/game/room/quotes/choose", { i: i }).subscribe(res=>{
+         })
     }
+
+    chosenQuote = ()=> this.room.quotes.find(x=> x.chosen);
+    myQuote = ()=> this.room.quotes.find(x=> x.player ==this.me.name);
 
 }
