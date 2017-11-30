@@ -6,9 +6,10 @@
                            Players
                     </div>
                      <ul class="list-group list-group-flush" id="players">
-                        <li *ngFor="let x of room.players; index as i" class="list-group-item d-flex justify-content-between align-items-center">
-                            {{x.name}}
+                        <li *ngFor="let x of room.players; index as i" class="list-group-item">
+                            <img [src]="x.picture" style="width: 26px;" class="rounded"/>
                             <span  *ngIf="i == room.dealer" class="badge badge-info">dealer</span>
+                             {{x.name}} 
                         </li>
                      </ul>
                 </div>

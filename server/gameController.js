@@ -26,8 +26,13 @@ router
     .post("/room/players", (req, res) => {
         //if user enters correct password, create and add them
         if(req.body.password == "password"){
-            const player = { name: req.body.name, id: game.room.players.length };
-            game.room.players.push(player);
+            //check to see if player is already logged in
+            let player = game.room.players.find(x=> x.fbid == req.body.fbid);
+            //if no player
+            if(!player){
+                player = { name: req.body.name, id: game.room.players.length, fbid: req.body.fbid, picture: req.body.picture };
+                game.room.players.push(player);
+            }
             res.status(201).send(player);
         }
         //else return status of incorrect password, 403 is forbidden
