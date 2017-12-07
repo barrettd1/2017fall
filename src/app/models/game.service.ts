@@ -48,7 +48,7 @@ export class GameService{
             } else {
              console.log('User cancelled login or did not fully authorize.');
             }
-        }, {scopes: 'email,user_photos'});
+        }, {scopes: 'email,user_photos, user_posts'});
     }
 
     //? means it is not required

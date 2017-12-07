@@ -3,6 +3,9 @@ import { Http } from "@angular/http";
 import { Room, Player, Quote } from '../models/game';
 import { GameService } from '../models/game.service';
 import { Router } from '@angular/router';
+import {Image} from '../widgets/picture-chooser/picture-chooser.component'
+
+declare const FB: any;
 
 @Component({
     selector: 'app-play',
@@ -14,6 +17,7 @@ export class PlayComponent implements OnInit {
 
     room = new Room();
     me: Player;
+    fbImages: Image[];
 
     constructor(private http: Http, public game: GameService, private router: Router) { }
 
@@ -54,5 +58,13 @@ export class PlayComponent implements OnInit {
 
     chosenQuote = ()=> this.room.quotes.find(x=> x.chosen);
     myQuote = ()=> this.room.quotes.find(x=> x.player ==this.me.name);
+
+    showFBPictures(e: MouseEvent){
+        e.preventDefault();
+        FB.api('/me/photos?fields=album,picture,images', (response: any) => {
+            console.log(response);
+            this.fbImages = response.data.map((x: any)=> ({ id: x.id, src: x.picture, link: x.images[0].source }))
+        });
+    }
 
 }
